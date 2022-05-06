@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   //     _counter++;
   //   });
   // }
-
+  TextEditingController valueController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final _counter = Inherit.of(context)?.counter;
@@ -61,12 +61,31 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: 20,
             ),
-            ElevatedButton(
-                onPressed: (){
-                  Inherit.of(context)?.incrementCounter();
-                },
-                child: Text('Press me', style: TextStyle(fontSize: 16),),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: (){
+                    Inherit.of(context)?.incrementCounter();
+                  },
+                  child: Text('Press me', style: TextStyle(fontSize: 16),),
                 ),
+                SizedBox(width: 10,),
+                ElevatedButton(
+                  onPressed: (){
+                    Inherit.of(context)?.clearCounter();
+                  },
+                  child: Text('Clear Counter', style: TextStyle(fontSize: 16),),
+                ),
+                SizedBox(width: 10,),
+                ElevatedButton(
+                  onPressed: (){
+                    Inherit.of(context)?.setCounterValue();
+                  },
+                  child: Text('Set Value', style: TextStyle(fontSize: 16),),
+                )
+              ],
+            )
           ],
         ),
       ),

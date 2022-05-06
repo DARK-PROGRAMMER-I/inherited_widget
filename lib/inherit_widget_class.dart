@@ -14,12 +14,39 @@ class ChangeState extends StatefulWidget {
 
 class _ChangeStateState extends State<ChangeState> {
   int counter = 0;
-
+  TextEditingController valueController = TextEditingController();
   incrementCounter(){
 
     setState(() {
       counter = counter + 1;
     });
+  }
+  clearCounter(){
+    setState(() {
+      counter= 0;
+    });
+  }
+  setCounterValue(){
+    showDialog(
+        context: context,
+        builder: (context){
+          return AlertDialog(
+            title: TextFormField(
+              validator: (val) => val != int ?  'Please Inter Integer value' : null,
+              controller: valueController,
+            ),
+            actions: [
+              ElevatedButton(onPressed: (){
+                setState(() {
+                 counter = int.parse(valueController.text);
+                });
+                Navigator.pop(context);
+              }, child: Text('Save'))
+            ],
+
+          );
+        }
+    );
   }
 
   @override
